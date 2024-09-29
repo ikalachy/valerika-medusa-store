@@ -6,7 +6,7 @@ WORKDIR /app/medusa
 # Copy everything into the container
 COPY . . 
 
-
+RUN npm run build
 # Install the latest npm and dependencies, while suppressing unnecessary logs
 RUN npm install -g npm@latest
 RUN npm install --loglevel=error

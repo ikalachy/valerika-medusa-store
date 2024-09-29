@@ -19,7 +19,6 @@ RUN npm install --loglevel=error
 # Build the application
 RUN npm run build
 
-
 # Second stage - Setup runtime environment
 FROM node:20.5.0
 
@@ -30,8 +29,6 @@ RUN mkdir dist
 
 # Copy necessary config files
 COPY package*.json ./ 
-COPY develop.sh .
-COPY .env .
 COPY medusa-config.js .
 
 # Update and install Python3 (if needed for your app)
