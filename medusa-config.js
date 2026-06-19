@@ -2,6 +2,8 @@ const dotenv = require("dotenv");
 
 let ENV_FILE_NAME = "";
 console.log("!!!!! process.env.NODE_ENV :>> ", process.env.NODE_ENV);
+console.log("!!!!! process.env.REDIS_URL :>> ", process.env.REDIS_URL);
+console.log("!!!!! process.env.DATABASE_URL :>> ", process.env.DATABASE_URL);
 switch (process.env.NODE_ENV) {
   case "production":
     ENV_FILE_NAME = ".env.production";
@@ -58,18 +60,18 @@ const plugins = [
 ];
 
 const modules = {
-  eventBus: {
-    resolve: "@medusajs/event-bus-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },
-  cacheService: {
-    resolve: "@medusajs/cache-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },
+  // eventBus: {
+  //   resolve: "@medusajs/event-bus-redis",
+  //   options: {
+  //     redisUrl: REDIS_URL,
+  //   },
+  // },
+  // cacheService: {
+  //   resolve: "@medusajs/cache-redis",
+  //   options: {
+  //     redisUrl: REDIS_URL,
+  //   },
+  // },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
@@ -80,7 +82,11 @@ const projectConfig = {
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  // redis_url: REDIS_URL
+  // redis_url: REDIS_URL,
+  // redis_options: {
+  //   connectionName: process.env.REDIS_CONNECTION_NAME || "medusa",
+  //   password: "AV9GAAIjcDExODEyNTJmN2M3YzM0OGEwODM2NTY1NjExYjMwZTJkYnAxMA",
+  // },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
